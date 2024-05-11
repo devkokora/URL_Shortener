@@ -7,7 +7,7 @@ if (app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
+
 app.UseStaticFiles();
 app.MapRazorPages();
-
 app.Run();
