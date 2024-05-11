@@ -10,3 +10,5 @@
   - ⚫ Optionally, allow users to specify custom short URLs.
 5. **User Authentication:** 
   - ⚫ Implement basic user authentication to allow registered users to manage their shortened URLs.
+
+![Alt text](https://github.com/devkokora/URL_Shortener/blob/master/pics/diagram.png)
