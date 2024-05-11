@@ -10,5 +10,7 @@
   - ⚫ Optionally, allow users to specify custom short URLs.
 5. **User Authentication:** 
   - ⚫ Implement basic user authentication to allow registered users to manage their shortened URLs.
+6. **Background Service:** 
+  - ⚫ Create a background service removing out-of-date URLs.
 
-![Alt text](https://github.com/devkokora/URL_Shortener/blob/master/pics/diagram.png)
+![Alt text](https://github.com/devkokora/URL_Shortener/blob/master/wwwroot/imgs/diagram.png)
