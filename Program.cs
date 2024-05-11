@@ -1,6 +1,13 @@
 var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+builder.Services.AddRazorPages();
 
-app.MapGet("/", () => "Hello World!");
+var app = builder.Build();
+if (app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+app.UseStaticFiles();
+app.MapRazorPages();
 
 app.Run();
