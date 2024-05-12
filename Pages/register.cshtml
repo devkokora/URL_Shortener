@@ -1,50 +1,37 @@
 ﻿@page
 @model URL_Shortener.Pages.registerModel
 
-    <div class="container" style="position:relative; width:600px">
-        <div class="bg-dark-subtle mt-5">
-            <div class="title-bar">
-                <div class="title-bar-text">URL Shortener</div>
-                <div class="title-bar-controls">
+
+<div class="window-body" style="position:absolute;">
+    <menu role="tablist">
+        <li role="tab"><a href="/">Home</a></li>
+        <li role="tab"><a href="/login">Login</a></li>
+        <li role="tab"><a href="/manager">Manage URL</a></li>
+        <li role="tab" aria-selected="true"><a href="/register">Register</a></li>
+    </menu>
+</div>
+<div class="window" role="tabpanel" style="height: 250px; position: relative; top:35.8px;">
+    <div class="window-body">
+        <div class="container">
+            <div class="form">
+                <div class="field-row-stacked" style="width: 200px">
+                    <label for="text22">Email</label>
+                    <input id="text22" type="email" value="your@email.com" />
                 </div>
-            </div>
-            <div class="window-body" style="position:absolute;">
-                <menu role="tablist">
-                    <li role="tab"><a href="/">Home</a></li>
-                    <li role="tab"><a href="/login">Login</a></li>
-                    <li role="tab"><a href="/manager">Manage URL</a></li>
-                    <li role="tab" aria-selected="true"><a href="/register">Register</a></li>
-                </menu>
-            </div>
-            <div class="window" role="tabpanel" style="height: 250px; position: relative; top:35.8px;">
-                <div class="window-body">
-                    <div class="container">
-                        <div class="form">
-                            <div class="field-row-stacked" style="width: 200px">
-                                <label for="text22">Email</label>
-                                <input id="text22" type="email" value="your@email.com" />
-                            </div>
-                            <div class="field-row-stacked" style="width: 200px">
-                                <label for="text23">Password</label>
-                                <input id="text23" type="password" value="hunter2" />
-                            </div>
-                            <div class="field-row-stacked" style="width: 200px">
-                                <label for="text23">Comfirm password</label>
-                                <input id="text23" type="password" value="hunter2" />
-                            </div>
-                            <div class="row justify-content-start">
-                                <div class="col-3">
-                                    <button class="mt-3 align-content-end" type="submit">Login</button>
-                                </div>
-                            </div>
-                        </div>
+                <div class="field-row-stacked" style="width: 200px">
+                    <label for="text23">Password</label>
+                    <input id="text23" type="password" value="hunter2" />
+                </div>
+                <div class="field-row-stacked" style="width: 200px">
+                    <label for="text23">Comfirm password</label>
+                    <input id="text23" type="password" value="hunter2" />
+                </div>
+                <div class="row justify-content-start">
+                    <div class="col-3">
+                        <button class="mt-3 align-content-end" type="submit">Login</button>
                     </div>
-                </div>
-                <div class="status-bar" style="position: fixed; top: 330px; width:568px">
-                    <p class="status-bar-field" style="font-size:12px">Total URL alive: 89,292</p>
-                    <p class="status-bar-field" style="font-size:12px">Remening: 23,931,682</p>
-                    <p class="status-bar-field text-end" style="font-size:12px">Contact: dev.kokora@gmail.com</p>
                 </div>
             </div>
         </div>
     </div>
+</div>

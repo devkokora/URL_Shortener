@@ -1,13 +1,33 @@
+using Microsoft.EntityFrameworkCore;
+using URL_Shortener.Models;
+
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddRazorPages();
+builder.Services.AddScoped<IUrlInteractive, UrlInteractive>();
+
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AddPageRoute("/index", "{*url}");
+});
+
+builder.Services.AddDbContext<UrlShortenerDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("UrlShortenerDbContextConnection"));
+    options.EnableSensitiveDataLogging();
+}
+);
 
 var app = builder.Build();
+
 if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
+    app.UseDeveloperExceptionPage();
 }
 
 app.UseStaticFiles();
+
+//app.UseRouting();
+//app.UseAuthentication();
+
 app.MapRazorPages();
+
 app.Run();
