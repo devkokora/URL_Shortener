@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Identity.Client;
 using System;
 
-namespace URL_Shortener.Models
+namespace URL_Shortener.Models.Interactives
 {
     public class UrlInteractive : IUrlInteractive
     {
@@ -22,8 +22,8 @@ namespace URL_Shortener.Models
                 return existingUrl.LongUrl;
             }
             return null;
-        }   
-        
+        }
+
         public string Create(Url newUrl)
         {
             newUrl.ShortUrl = GenerateShortUrl(newUrl.LongUrl);

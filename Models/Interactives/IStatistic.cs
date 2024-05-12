@@ -1,4 +1,4 @@
-﻿namespace URL_Shortener.Models
+﻿namespace URL_Shortener.Models.Interactives
 {
     public interface IStatistic
     {

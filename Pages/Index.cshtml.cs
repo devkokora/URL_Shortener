@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Linq;
 using URL_Shortener.Models;
+using URL_Shortener.Models.Interactives;
 
 namespace URL_Shortener.Pages
 {

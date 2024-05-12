@@ -8,12 +8,12 @@ namespace URL_Shortener.Models
     {
         [Key]
         public int Id { get; set; }
+        [StringLength(50, MinimumLength = 6)]
         [Required]
-        [StringLength(50, ErrorMessage = "Username must be lower than 50 charactor")]
-        public string? Username { get; set; }
+        public string Username { get; set; } = string.Empty;
+        [StringLength(50, MinimumLength = 8)]
         [Required]
-        [StringLength(50, ErrorMessage = "Password must be lower than 50 charactor")]
-        public string? Password { get; set; }
+        public string Password { get; set; } = string.Empty;
         [ValidateNever]
         public RoleType Role { get; set; } = RoleType.user;
         [ValidateNever]

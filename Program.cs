@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using URL_Shortener.Models;
+using URL_Shortener.Models.Interactives;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IUrlInteractive, UrlInteractive>();

@@ -1,8 +1,8 @@
-﻿namespace URL_Shortener.Models
+﻿namespace URL_Shortener.Models.Interactives
 {
     public class Statistic : IStatistic
     {
-        public int Remening {get; set; }
+        public int Remening { get; set; }
         public int UrlAlive { get; set; }
         public void SetStatistic(int remening, int urlAlive)
         {

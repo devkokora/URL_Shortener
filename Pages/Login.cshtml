@@ -1,7 +1,6 @@
 ﻿@page
 @model URL_Shortener.Pages.LoginModel
 
-
 <div class="window-body" style="position:absolute;">
     <menu role="tablist">
         <li role="tab"><a href="/">Home</a></li>
@@ -13,16 +12,15 @@
     <div class="window-body">
         <div class="container">
             <form class="form" method="post">
-                <div asp-validation-summary="All"></div>
                 <div class="field-row-stacked" style="width: 200px">
-                    <label asp-for="@Model._user.Username" for="text22">Email</label>
-                    <input asp-for="@Model._user.Username" id="text22" type="email" value="" placeholder="@@email" />
-                    <span asp-validation-for="@Model._user.Username" class="text-danger"></span>
+                    <label asp-for="Email" for="text22">Email</label>
+                    <input asp-for="Email" id="text22" type="email" placeholder="@@email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="field-row-stacked" style="width: 200px">
-                    <label asp-for="@Model._user.Password" for="text23">Password</label>
-                    <input asp-for="@Model._user.Password" id="text23" type="password" value="" placeholder="*****" />
-                    <span asp-validation-for="@Model._user.Password" class="text-danger"></span>
+                    <label asp-for="Password" for="text23">Password</label>
+                    <input asp-for="Password" id="text23" type="password" placeholder="*****" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="row justify-content-start">
                     <div class="col-3">

@@ -2,6 +2,7 @@
 using Microsoft.Identity.Client;
 using System.Diagnostics.Metrics;
 using URL_Shortener.Models;
+using URL_Shortener.Models.Interactives;
 
 namespace URL_Shortener.Components
 {
