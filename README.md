@@ -1,9 +1,9 @@
 ## URL Shortener
 ### Features:
 1. **URL Shortening:** 
-  - ⚫ Users can input long URLs, and the system generates a unique shortened URL for them.
+  - 🟢 Users can input long URLs, and the system generates a unique shortened URL for them.
 2. **Redirection:** 
-  - ⚫ When users visit the shortened URL, they are redirected to the original long URL.
+  - 🟢 When users visit the shortened URL, they are redirected to the original long URL.
 3. **Statistics:** 
   - ⚫ Track the number of times each shortened URL has been accessed.
 4. **Custom URL:** 

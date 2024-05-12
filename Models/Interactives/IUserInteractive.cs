@@ -11,5 +11,7 @@
         void Subscription(int id, int month);
         User? Login(string email, string password);
         List<Url>? GetAllUrlsByUser(int id);
+        User? GetUserByEmail(string email);
+        User? GetUserById(int? id);
     }
 }

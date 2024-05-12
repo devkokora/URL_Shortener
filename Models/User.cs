@@ -11,7 +11,7 @@ namespace URL_Shortener.Models
         [StringLength(50, MinimumLength = 6)]
         [Required]
         public string Username { get; set; } = string.Empty;
-        [StringLength(50, MinimumLength = 8)]
+        [StringLength(64, MinimumLength = 8)]
         [Required]
         public string Password { get; set; } = string.Empty;
         [ValidateNever]

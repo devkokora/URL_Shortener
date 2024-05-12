@@ -19,28 +19,22 @@
                             <th>Shorten URL</th>
                             <th>Full URL</th>
                             <th>View count</th>
-                            <th>Date (dd/mm/year)</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>mini.net/sdf7w</td>
-                            <td>https://learn.microsoft.com/en-us/dotnet/core/introduction</td>
-                            <td class="text-end">1278</td>
-                            <td class="text-end">12/05/2024</td>
-                        </tr>
-                        <tr>
-                            <td>mini.net/j04wa</td>
-                            <td>https://mixedanalytics.com/blog/list-actually-free-open-no-auth-needed-apis/</td>
-                            <td class="text-end">234789</td>
-                            <td class="text-end">24/02/2028</td>
-                        </tr>
-                        <tr>
-                            <td>mini.net/e5b90</td>
-                            <td>https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-8.0#kestrel</td>
-                            <td class="text-end">8374</td>
-                            <td class="text-end">01/12/2030</td>
-                        </tr>
+                        @if (Model.urls is not null)
+                        {
+                            @foreach (var url in Model.urls)
+                            {
+                                <tr>
+                                    <td>@url.ShortUrl</td>
+                                    <td>@(url.LongUrl.Length > 12 ? url.LongUrl[..^12] : url.LongUrl)</td>
+                                    <td class="text-end">@url.VisitorCount</td>
+                                    <td class="text-end">OK</td>
+                                </tr>
+                            }
+                        }
                     </tbody>
                 </table>
             </div>

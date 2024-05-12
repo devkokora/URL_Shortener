@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.EntityFrameworkCore;
-using URL_Shortener.Models.Interactives;
 
 namespace URL_Shortener.Models.Interactives
 {
@@ -92,5 +91,11 @@ namespace URL_Shortener.Models.Interactives
             }
             return null;
         }
+
+        public User? GetUserByEmail(string email)
+            => _urlShortenerDbContext.Users.FirstOrDefault(u => u.Username == email);
+
+        public User? GetUserById(int? id)
+            => _urlShortenerDbContext.Users.Find(id);
     }
 }

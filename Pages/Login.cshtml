@@ -13,14 +13,14 @@
         <div class="container">
             <form class="form" method="post">
                 <div class="field-row-stacked" style="width: 200px">
-                    <label asp-for="Email" for="text22">Email</label>
-                    <input asp-for="Email" id="text22" type="email" placeholder="@@email" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <label asp-for="@Model.User.Username" for="text22">Email</label>
+                    <input asp-for="@Model.User.Username" id="text22" type="email" placeholder="@@email" />
+                    <span asp-validation-for="@Model.User.Username" class="text-danger" style="font-size:8px"></span>
                 </div>
                 <div class="field-row-stacked" style="width: 200px">
-                    <label asp-for="Password" for="text23">Password</label>
-                    <input asp-for="Password" id="text23" type="password" placeholder="*****" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <label asp-for="@Model.User.Password" for="text23">Password</label>
+                    <input asp-for="@Model.User.Password" id="text23" type="password" placeholder="*****" />
+                    <span asp-validation-for="@Model.User.Password" class="text-danger" style="font-size:8px"></span>
                 </div>
                 <div class="row justify-content-start">
                     <div class="col-3">

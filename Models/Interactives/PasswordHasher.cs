@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.Unicode;
 
-namespace URL_Shortener.Models
+namespace URL_Shortener.Models.Interactives
 {
     public static class PasswordHasher
     {

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using URL_Shortener.Models;
 using URL_Shortener.Models.Interactives;
 
 namespace URL_Shortener.Pages;
@@ -8,9 +9,8 @@ public class LoginModel : PageModel
 {
     private readonly IUserInteractive _userInteractive;
     [BindProperty]
-    public string? Email { get; set; }
-    [BindProperty]
-    public string? Password { get; set; }
+    public new User User { get; set; } = new();
+    
     public LoginModel(IUserInteractive userInteractive)
     {
         _userInteractive = userInteractive;
@@ -22,11 +22,12 @@ public class LoginModel : PageModel
 
     public IActionResult OnPost()
     {
-        if (!string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password))
+        if (ModelState.IsValid)
         {
-            var user = _userInteractive.Login(Email, Password);
+            var user = _userInteractive.Login(User.Username, User.Password);
             if (user is not null)
             {
+                HttpContext.Session.SetInt32("UserId", User.Id);
                 return RedirectToPage("Manager");
             }
         }

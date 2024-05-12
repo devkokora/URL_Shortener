@@ -1,0 +1,15 @@
+﻿@model User
+@if (!string.IsNullOrEmpty(Model.Username))
+{
+    <div class="window" style="position:absolute; top:30px; left:700px; z-index:3;">
+        <div class="title-bar">
+            <div class="title-bar-text">Login</div>
+            <div class="title-bar-controls">
+                <button aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="window-body text-center">
+            <p>👨‍💻@Model.Username</p>
+        </div>
+    </div>
+}
