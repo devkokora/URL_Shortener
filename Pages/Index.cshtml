@@ -8,26 +8,17 @@
         <li role="tab"><a href="/manager">Manage URL</a></li>
     </menu>
 </div>
-<div class="window" role="tabpanel" style="height: 250px; position: relative; top: 35.8px;">
+<div class="window" role="tabpanel" style="height: 250px; position: relative; top: 35px;">
     <div class="window-body">
-        <div class="container">
-            <div class="text-center">
-                <p><strong>Paste your URL into the text field.</strong></p>
-                <div class="field-row justify-content-center">
-                    <form method="post">
-                        <label asp-for="Url" for="text17">URL:</label>
-                        <input asp-for="Url" id="text17" type="text" style="width:322px;" placeholder="Enter the link here" />
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
+        <div class="container text-center">
+            <p><strong>Paste your URL into the text field.</strong></p>
+            <div class="field-row justify-content-center">
+                <form method="post">
+                    <label asp-for="LongUrl" for="text17">URL:</label>
+                    <input asp-for="LongUrl" id="text17" type="text" style="width:322px;" placeholder="Enter the link here" />
+                    <button type="submit">Submit</button>
+                </form>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="status-bar" style="margin: 60px 60px 50px 60px">
-            <p class="status-bar-field text-center" style="font-size:18px;">www.mini.net/K19em0</p>
-            <button>Copy</button>
-        </div>
-        <p class="text-success text-end">status:OK</p>
     </div>
 </div>

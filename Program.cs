@@ -3,6 +3,9 @@ using URL_Shortener.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IUrlInteractive, UrlInteractive>();
+builder.Services.AddScoped<IUserInteractive, UserInteractive>();
+builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddRazorPages(options =>
 {
@@ -24,8 +27,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseStaticFiles();
-
-//app.UseRouting();
+app.UseSession();
+app.UseRouting();
 //app.UseAuthentication();
 
 app.MapRazorPages();

@@ -13,6 +13,6 @@
 6. **Background Service:** 
   - ⚫ Create a background service removing out-of-date URLs.
 
-![Alt text](https://github.com/devkokora/URL_Shortener/blob/master/wwwroot/imgs/looking.png)
+![Alt text](https://github.com/devkokora/URL_Shortener/blob/master/wwwroot/imgs/looking2.png)
 
 ![Alt text](https://github.com/devkokora/URL_Shortener/blob/master/wwwroot/imgs/diagram.png)

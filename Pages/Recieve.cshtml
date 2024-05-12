@@ -1,0 +1,62 @@
+﻿@page
+@model URL_Shortener.Pages.RecieveModel
+
+<div class="window-body" style="position:absolute;">
+    <menu role="tablist">
+        <li role="tab"><a href="/">Home</a></li>
+        <li role="tab"><a href="/login">Login</a></li>
+        <li role="tab"><a href="/manager">Manage URL</a></li>
+        <li role="tab" aria-selected="true"><a href="/recieve">Recieve URL</a></li>
+    </menu>
+</div>
+<div class="window" role="tabpanel" style="height: 250px; position: relative; top: 35px;">
+    <div class="window-body text-center">
+        <p class="text-success"><strong>You have successfully zipped the URL.</strong></p>
+        <div class="field-row justify-content-center">
+            <div class="status-bar">
+                <input class="status-bar-field text-center" style="font-size:18px;" value="@(Model.shortUrl is null ? "mini.net/Chuka" : Model.shortUrl)" id="recieveUrl" />
+                <button onclick="copyShortUrl()">Copy</button>
+            </div>
+        </div>
+        <ul class="tree-view text-start" style="margin: 10px 125px 0px 125px; font-size:8px;">
+            <li>
+                <details open>
+                    <summary>URL status</summary>
+                    <ul>
+                        <li>
+                            <details open>
+                                <summary>Ziplink URL</summary>
+                                <ul>
+                                    <li>
+                                        @(Model.shortUrl is null ? "mini.net/Chuka" : Model.shortUrl)"
+                                    </li>
+                                    <li>🟢 status:OK</li>
+                                </ul>
+                        </li>
+                        <li>
+                            <details open>
+                                <summary>Full URL</summary>
+                                <ul>
+                                    <li>
+                                        @(Model.longUrl is null ? "mini.net/Chuka" : Model.longUrl)"
+                                    </li>
+                                    <li>🟢 status:OK</li>
+                                </ul>
+                        </li>
+                    </ul>
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+<script>
+    function copyShortUrl() {
+        var copyText = document.getElementById("recieveUrl");
+
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+
+        navigator.clipboard.writeText(copyText.value);
+    }
+</script>

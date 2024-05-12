@@ -1,44 +1,52 @@
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Linq;
 using URL_Shortener.Models;
 
 namespace URL_Shortener.Pages
 {
     public class IndexModel : PageModel
     {
-        [BindProperty]
-        public string Url { get; set; }
         private readonly IUrlInteractive _urlInteractive;
+        private readonly IUserInteractive _userInteractive;
 
-        public IndexModel(IUrlInteractive urlInteractive)
+        [BindProperty]
+        public string? LongUrl { get; set; }
+        private readonly string shortUrlPattern = "ziplink.to/";
+
+        public IndexModel(IUrlInteractive urlInteractive, IUserInteractive userInteractive)
         {
             _urlInteractive = urlInteractive;
+            _userInteractive = userInteractive;
         }
         public IActionResult OnGet(string? url)
         {
             if (!string.IsNullOrEmpty(url) && url.Length == 5)
             {
-                return Redirect("https://www.google.com");
+                var tempUrl = _urlInteractive.GetLongUrl(url);
+                if (!string.IsNullOrEmpty(tempUrl))
+                {
+                    return Redirect(tempUrl);
+                }
             }
             return Page();
         }
         public IActionResult OnPost()
         {
-            if (ModelState.IsValid && !string.IsNullOrEmpty(Url))
-            {
+            if (string.IsNullOrEmpty(LongUrl))
+                return Page();
 
-                if (Url.Length > 5)
-                {
-                    _urlInteractive.Create(Url);
-                }
-                else
-                {
-                    var existingUrl = _urlInteractive.GetLongUrl(Url);
-                    return Redirect(existingUrl);
-                }
+            var url = new Url();
+            url.LongUrl = LongUrl;
+            if (_userInteractive.User is not null)
+            {
+                url.UserId = _userInteractive.User.Id;
             }
-            return Page();
+            url.ShortUrl = _urlInteractive.Create(url);
+            HttpContext.Session.SetString("ShortUrlOutput", shortUrlPattern + url.ShortUrl);
+            HttpContext.Session.SetString("LongUrlOutput", url.LongUrl);
+            return RedirectToPage("Recieve");
         }
     }
 }
