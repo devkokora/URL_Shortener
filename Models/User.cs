@@ -10,10 +10,10 @@ namespace URL_Shortener.Models
         public int Id { get; set; }
         [Required]
         [StringLength(50, ErrorMessage = "Username must be lower than 50 charactor")]
-        public string Username { get; set; } = string.Empty;
+        public string? Username { get; set; }
         [Required]
         [StringLength(50, ErrorMessage = "Password must be lower than 50 charactor")]
-        public string Password { get; set; } = string.Empty;
+        public string? Password { get; set; }
         [ValidateNever]
         public RoleType Role { get; set; } = RoleType.user;
         [ValidateNever]

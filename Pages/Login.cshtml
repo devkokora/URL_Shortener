@@ -12,14 +12,17 @@
 <div class="window" role="tabpanel" style="height: 250px; position: relative; top: 35px;">
     <div class="window-body">
         <div class="container">
-            <div class="form">
+            <form class="form" method="post">
+                <div asp-validation-summary="All"></div>
                 <div class="field-row-stacked" style="width: 200px">
-                    <label for="text22">Email</label>
-                    <input id="text22" type="email" value="" placeholder="@@email" />
+                    <label asp-for="@Model._user.Username" for="text22">Email</label>
+                    <input asp-for="@Model._user.Username" id="text22" type="email" value="" placeholder="@@email" />
+                    <span asp-validation-for="@Model._user.Username" class="text-danger"></span>
                 </div>
                 <div class="field-row-stacked" style="width: 200px">
-                    <label for="text23">Password</label>
-                    <input id="text23" type="password" value="" placeholder="*****" />
+                    <label asp-for="@Model._user.Password" for="text23">Password</label>
+                    <input asp-for="@Model._user.Password" id="text23" type="password" value="" placeholder="*****" />
+                    <span asp-validation-for="@Model._user.Password" class="text-danger"></span>
                 </div>
                 <div class="row justify-content-start">
                     <div class="col-3">
@@ -29,7 +32,7 @@
                         <a href="register" class="link-offset-1-hover text-end" style="font-size:12px;">register here</a>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

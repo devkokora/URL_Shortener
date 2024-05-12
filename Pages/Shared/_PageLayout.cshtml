@@ -13,23 +13,16 @@
 <body>
     <div class="container-fluid" style="position:relative; width:600px">
         <div class="bg-dark-subtle mt-5">
-            <div class="title-bar">      
+            <div class="title-bar">
                 <div class="title-bar-text">
-                    <img src="~/imgs/icons8-zip-80.png" width="20"/>
+                    <img src="~/imgs/icons8-zip-80.png" width="20" />
                     Ziplink
                 </div>
                 <div class="title-bar-controls">
                 </div>
             </div>
             @RenderBody()
-            <div class="status-bar" style="position: absolute; top: 283px; width:573px; z-index:3;">
-                <p class="status-bar-field" style="font-size:12px">Total URL alive: 89,292</p>
-                <p class="status-bar-field" style="font-size:12px">Remening: 23,931,682</p>
-                <p class="status-bar-field text-end" style="font-size:12px">Contact: dev.kokora@gmail.com</p>
-            </div>
-            <div>
-
-            </div>
+            <vc:statistic-summary></vc:statistic-summary>
         </div>
     </div>
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>
