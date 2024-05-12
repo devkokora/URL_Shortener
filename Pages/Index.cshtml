@@ -4,7 +4,7 @@
 <div class="window-body" style="position:absolute;">
     <menu role="tablist">
         <li role="tab" aria-selected="true"><a href="/">Home</a></li>
-        <li role="tab"><a href="/login">Login</a></li>
+        <li role="tab"><a href="/login">@(Model._userService.User is null ? "Login" : "Logout")</a></li>
         <li role="tab"><a href="/manager">Manage URL</a></li>
     </menu>
 </div>

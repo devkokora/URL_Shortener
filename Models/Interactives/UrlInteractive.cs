@@ -19,6 +19,8 @@ namespace URL_Shortener.Models.Interactives
             var existingUrl = _urlShortenerDbContext.Urls.FirstOrDefault(u => u.ShortUrl == url);
             if (existingUrl is not null)
             {
+                existingUrl.VisitorCount++;
+                _urlShortenerDbContext.SaveChanges();
                 return existingUrl.LongUrl;
             }
             return null;
@@ -28,6 +30,13 @@ namespace URL_Shortener.Models.Interactives
         {
             newUrl.ShortUrl = GenerateShortUrl(newUrl.LongUrl);
             _urlShortenerDbContext.Urls.Add(newUrl);
+            _urlShortenerDbContext.SaveChanges();
+            if (newUrl.User is not null)
+            {
+                newUrl.User.UrlsId ??= [];
+
+                newUrl.User.UrlsId.Add(newUrl.Id);
+            }
             _urlShortenerDbContext.SaveChanges();
             return newUrl.ShortUrl;
         }

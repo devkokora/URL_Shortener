@@ -2,30 +2,24 @@
 using Microsoft.AspNetCore.Mvc;
 using URL_Shortener.Models;
 using URL_Shortener.Models.Interactives;
+using URL_Shortener.Services;
 
 namespace URL_Shortener.Components
 {
     public class DisplayLoginUser : ViewComponent
     {
-        private readonly IUserInteractive _userInteractive;
+        private readonly IUserService _userService;
 
-        public DisplayLoginUser(IUserInteractive userInteractive, IHttpContextAccessor httpContextAccessor)
+        public DisplayLoginUser(IUserService userService)
         {
-            _userInteractive = userInteractive;
-            var userId = httpContextAccessor?.HttpContext?.Session.GetInt32("UserId");
-            var user = _userInteractive.GetUserById(userId);
-            if (user is not null)
-            {
-                _userInteractive.User = user;
-            }
+            _userService = userService;
         }
 
         public IViewComponentResult Invoke()
         {
-            var user = _userInteractive.User;
-            if (user is not null)
+            if (_userService.User is not null)
             {
-                return View(user);
+                return View(_userService.User);
             }
             return View(new User());
         }

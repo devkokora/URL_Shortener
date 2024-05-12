@@ -1,24 +1,37 @@
-﻿namespace URL_Shortener.Middleware
+﻿using URL_Shortener.Models.Interactives;
+using URL_Shortener.Services;
+
+namespace URL_Shortener.Middleware
 {
     public class UserMiddleware
     {
         private readonly RequestDelegate _next;
+
         public UserMiddleware(RequestDelegate next)
         {
             _next = next;
         }
-        public async Task InVoke(HttpContext context, IUserService userService)
+
+        public async Task InvokeAsync(HttpContext context, IUserService _userService)
         {
             var userId = context.Session.GetInt32("userId");
             if (userId.HasValue)
             {
-                var user = userService.GetUserbyId(userId.Value);
+                var user = _userService.GetUserById((int)userId);
                 if (user is not null)
                 {
-                    userService.User = user;
+                    _userService.User = user;
                 }
             }
             await _next(context);
+        }
+    }
+
+    public static class UserMiddlewareExtensions
+    {
+        public static IApplicationBuilder UseUserMiddleware(this IApplicationBuilder builder)
+        {
+            return builder.UseMiddleware<UserMiddleware>();
         }
     }
 }

@@ -5,7 +5,7 @@
 2. **Redirection:** 
   - 🟢 When users visit the shortened URL, they are redirected to the original long URL.
 3. **Statistics:** 
-  - ⚫ Track the number of times each shortened URL has been accessed.
+  - 🟢 Track the number of times each shortened URL has been accessed.
 4. **Custom URL:** 
   - ⚫ Optionally, allow users to specify custom short URLs.
 5. **User Authentication:** 
@@ -13,6 +13,6 @@
 6. **Background Service:** 
   - ⚫ Create a background service removing out-of-date URLs.
 
-![Alt text](https://github.com/devkokora/URL_Shortener/blob/master/wwwroot/imgs/looking2.png)
+![Alt text](https://github.com/devkokora/URL_Shortener/blob/master/wwwroot/imgs/looking3.png)
 
 ![Alt text](https://github.com/devkokora/URL_Shortener/blob/master/wwwroot/imgs/diagram.png)

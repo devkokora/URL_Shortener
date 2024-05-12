@@ -2,7 +2,6 @@
 {
     public interface IUserInteractive
     {
-        User? User { get; set; }
         List<Url>? Urls { get; set; }
         void Create(User user);
         void ChangePassword(int id, string newPassword);

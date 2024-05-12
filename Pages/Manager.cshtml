@@ -5,7 +5,7 @@
 <div class="window-body" style="position:absolute;">
     <menu role="tablist">
         <li role="tab"><a href="/">Home</a></li>
-        <li role="tab"><a href="/login">Login</a></li>
+        <li role="tab"><a href="/login">@(Model._userService.User is null ? "Login" : "Logout")</a></li>
         <li role="tab" aria-selected="true"><a href="/manager">Manage URL</a></li>
     </menu>
 </div>
@@ -29,9 +29,9 @@
                             {
                                 <tr>
                                     <td>@url.ShortUrl</td>
-                                    <td>@(url.LongUrl.Length > 12 ? url.LongUrl[..^12] : url.LongUrl)</td>
+                                    <td>@(url.LongUrl.Length > 30 ? url.LongUrl[8..30] + "..." : url.LongUrl)</td>
                                     <td class="text-end">@url.VisitorCount</td>
-                                    <td class="text-end">OK</td>
+                                    <td class="text-center bg-success text-white">OK</td>
                                 </tr>
                             }
                         }

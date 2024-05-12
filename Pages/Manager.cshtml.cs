@@ -2,36 +2,30 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using URL_Shortener.Models;
 using URL_Shortener.Models.Interactives;
+using URL_Shortener.Services;
 
 namespace URL_Shortener.Pages
 {
     public class ManagerModel : PageModel
     {
-        private readonly IUrlInteractive _urlInteractive;
         private readonly IUserInteractive _userInteractive;
+        public readonly IUserService _userService;
         public List<Url>? urls { get; set; } = new();
         [BindProperty]
         public Url? edirUrl { get; set; }
 
-        public ManagerModel(IUrlInteractive urlInteractive, IUserInteractive userInteractive, IHttpContextAccessor httpContextAccessor)
+        public ManagerModel(IUserInteractive userInteractive, IUserService userService)
         {
-            _urlInteractive = urlInteractive;
             _userInteractive = userInteractive;
-
-            var userId = httpContextAccessor?.HttpContext?.Session.GetInt32("UserId");
-            var user = _userInteractive.GetUserById(userId);
-            if (user is not null)
-            {
-                _userInteractive.User = user;
-            }
+            _userService = userService;
         }
 
         public void OnGet()
         {
-            var user = _userInteractive.User;
+            var user = _userService.User;
             if (user is not null)
             {
-                urls = _userInteractive.GetAllUrlsByUser(user.Id);
+                urls = _userInteractive.GetAllUrlsByUser(user.Id)?.Distinct().ToList();
             }
         }
     }

@@ -1,10 +1,13 @@
 using Microsoft.EntityFrameworkCore;
+using URL_Shortener.Middleware;
 using URL_Shortener.Models;
 using URL_Shortener.Models.Interactives;
+using URL_Shortener.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IUrlInteractive, UrlInteractive>();
 builder.Services.AddScoped<IUserInteractive, UserInteractive>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
@@ -32,6 +35,7 @@ app.UseStaticFiles();
 app.UseSession();
 app.UseRouting();
 //app.UseAuthentication();
+app.UseUserMiddleware();
 
 app.MapRazorPages();
 //app.MapDefaultControllerRoute();
