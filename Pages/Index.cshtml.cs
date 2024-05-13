@@ -15,7 +15,7 @@ namespace URL_Shortener.Pages
 
         [BindProperty]
         public string? LongUrl { get; set; }
-        private readonly string shortUrlPattern = "ziplink.to/";
+        private readonly string shortUrlPattern = "ziplink.azurewebsites.net/";
 
         public IndexModel(
             IUrlInteractive urlInteractive,

@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "URLShortener20240514004732",
+      "defaultValue": "Ziplink",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }
