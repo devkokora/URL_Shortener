@@ -50,9 +50,14 @@ namespace URL_Shortener.Pages
                 url.User = _userService.User;
             }
             url.ShortUrl = _urlInteractive.Create(url);
-            HttpContext.Session.SetString("ShortUrlOutput", shortUrlPattern + url.ShortUrl);
-            HttpContext.Session.SetString("LongUrlOutput", url.LongUrl);
-            return RedirectToPage("Recieve");
+
+            if (string.IsNullOrEmpty(url.ShortUrl))
+            {
+                HttpContext.Session.SetString("ShortUrlOutput", shortUrlPattern + url.ShortUrl);
+                HttpContext.Session.SetString("LongUrlOutput", url.LongUrl);
+                return RedirectToPage("Recieve");
+            }
+            return Page();
         }
     }
 }

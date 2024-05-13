@@ -29,16 +29,20 @@ namespace URL_Shortener.Models.Interactives
         public string Create(Url newUrl)
         {
             newUrl.ShortUrl = GenerateShortUrl(newUrl.LongUrl);
-            _urlShortenerDbContext.Urls.Add(newUrl);
-            _urlShortenerDbContext.SaveChanges();
-            if (newUrl.User is not null)
+            if (!IsDuplicateZipLink(newUrl))
             {
-                newUrl.User.UrlsId ??= [];
+                _urlShortenerDbContext.Urls.Add(newUrl);
+                _urlShortenerDbContext.SaveChanges();
+                if (newUrl.User is not null)
+                {
+                    newUrl.User.UrlsId ??= [];
 
-                newUrl.User.UrlsId.Add(newUrl.Id);
+                    newUrl.User.UrlsId.Add(newUrl.Id);
+                }
+                _urlShortenerDbContext.SaveChanges();
+                return newUrl.ShortUrl;
             }
-            _urlShortenerDbContext.SaveChanges();
-            return newUrl.ShortUrl;
+            return string.Empty;
         }
 
         private string GenerateShortUrl(string longUrl)
@@ -51,12 +55,22 @@ namespace URL_Shortener.Models.Interactives
         public void Edit(Url url)
         {
             var existingUrl = _urlShortenerDbContext.Urls.Find(url.Id);
-            if (existingUrl is not null)
+            if (existingUrl is not null && !IsDuplicateZipLink(url))
             {
                 _urlShortenerDbContext.Entry(existingUrl).State = EntityState.Detached;
                 _urlShortenerDbContext.Update(url);
                 _urlShortenerDbContext.SaveChanges();
             }
+        }
+
+        private bool IsDuplicateZipLink(Url url)
+        {
+            var searchUrls = _urlShortenerDbContext.Urls.Where(u => u.ShortUrl == url.ShortUrl).ToList();
+
+            if (searchUrls.Count == 0 || searchUrls.All(su => su.Id == url.Id))
+                return false;
+            else
+                return true;
         }
 
         public void Delete(int id)
@@ -68,5 +82,10 @@ namespace URL_Shortener.Models.Interactives
                 _urlShortenerDbContext.SaveChanges();
             }
         }
+
+        //public Url? GetUrlByZipLink(string? zipLink)
+        //{
+        //    return _urlShortenerDbContext.Urls.FirstOrDefault(u => u.ShortUrl == zipLink);
+        //}
     }
 }

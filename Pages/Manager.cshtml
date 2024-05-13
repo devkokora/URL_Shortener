@@ -12,32 +12,131 @@
 <div class="window" role="tabpanel" style="height: 250px; position: relative; top: 35px;">
     <div class="window-body">
         <div class="container">
-            <div class="sunken-panel" style="height: 200px; width: 300px;">
-                <table class="interactive">
-                    <thead>
-                        <tr>
-                            <th>Shorten URL</th>
-                            <th>Full URL</th>
-                            <th>View count</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model.urls is not null)
-                        {
-                            @foreach (var url in Model.urls)
-                            {
+            <div class="row">
+                <div class="col-7">
+                    <div class="sunken-panel" style="height: 200px; width: 300px;">
+                        <table class="interactive">
+                            <thead>
                                 <tr>
-                                    <td>@url.ShortUrl</td>
-                                    <td>@(url.LongUrl.Length > 30 ? url.LongUrl[8..30] + "..." : url.LongUrl)</td>
-                                    <td class="text-end">@url.VisitorCount</td>
-                                    <td class="text-center bg-success text-white">OK</td>
+                                    <th>Zip link</th>
+                                    <th>Full link</th>
+                                    <th>View count</th>
+                                    <th>Status</th>
+                                    <th hidden>Id</th>
                                 </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
+                            </thead>
+                            <tbody>
+                                @if (Model.urls is not null)
+                                {
+                                    @foreach (var url in Model.urls)
+                                    {
+                                        <tr>
+                                            <td>@url.ShortUrl</td>
+                                            <td>
+                                                @*@(url.LongUrl.Length > 30 ? url.LongUrl[8..30] + "..." :                            url.LongUrl)*@
+                                                @url.LongUrl
+                                            </td>
+                                            <td class="text-end">@url.VisitorCount</td>
+                                            <td class="text-center bg-success text-white">OK</td>
+                                            <td hidden>@url.Id</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <form class="col-5" method="post">
+                    <input type="hidden" asp-for="@Model.existingUrl.Id" id="urlIdInput" />
+                    <div class="field-row-stacked" style="width: 200px">
+                        <label asp-for="@Model.existingUrl.ShortUrl" for="zipLinkInput">Zip link</label>
+                        <input asp-for="@Model.existingUrl.ShortUrl" id="zipLinkInput" type="text" />
+                    </div>
+                    <div class="field-row-stacked" style="width: 200px">
+                        <label asp-for="@Model.existingUrl.LongUrl" for="fullLinkInput">Full link</label>
+                        <input asp-for="@Model.existingUrl.LongUrl" id="fullLinkInput" type="text" />
+                    </div>
+                    <div class="text-end">
+                        <input type="hidden" name="action" value="edit" />
+                        <button class="mt-3" type="submit">Edit</button>
+                        <button class="mt-3" type="reset">Cancel</button>
+                    </div>
+                </form>
+                <form method="post" id="removeForm" style="position:absolute; top:170px; left:466px">
+                    <input type="hidden" asp-for="@Model.existingUrl.Id" id="urlIdInput2" />
+                    <input type="hidden" asp-for="@Model.existingUrl.ShortUrl" id="zipLinkInput2" />
+                    <input type="hidden" asp-for="@Model.existingUrl.LongUrl" id="fullLinkInput2" />
+                    <input type="hidden" name="action" value="remove" />
+
+                    <div id="confirmationModal" class="window" style="display: none; position:absolute; margin: 32px; width: 250px; top:-165px; left:-340px;">
+                        <div class="title-bar">
+                            <div class="title-bar-text">Confirmation</div>
+                            <div class="title-bar-controls">
+                                <button id="closeModal" aria-label="Close"></button>
+                            </div>
+                        </div>
+                        <div class="window-body">
+                            <p>Are you sure you want to delete?</p>
+                            <section class="field-row" style="justify-content: flex-end">
+                                <button id="confirmDelete">OK</button>
+                                <button id="cancelDelete">Cancel</button>
+                            </section>
+                        </div>
+                    </div>
+                </form>
+                <div style="position:absolute; top:170px; left:466px">
+                    <button id="openModal" class="mt-3 bg-danger" type="submit">
+                    <strong>Remove</strong>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var rows = document.querySelectorAll(".interactive tbody tr");
+
+        rows.forEach(function (row) {
+            row.addEventListener("click", function () {
+                var cols = row.cells;
+                document.getElementById("zipLinkInput").value = cols[0].textContent.trim();
+                document.getElementById("fullLinkInput").value = cols[1].textContent.trim();
+                document.getElementById("urlIdInput").value = cols[4].textContent.trim();
+                document.getElementById("zipLinkInput2").value = cols[0].textContent.trim();
+                document.getElementById("fullLinkInput2").value = cols[1].textContent.trim();
+                document.getElementById("urlIdInput2").value = cols[4].textContent.trim();
+            });
+        });
+    });
+    var openModalButton = document.getElementById('openModal');
+    var closeModalButton = document.getElementById('closeModal');
+    var confirmDeleteButton = document.getElementById('confirmDelete');
+    var cancelDeleteButton = document.getElementById('cancelDelete');
+    var confirmationModal = document.getElementById('confirmationModal');
+
+    openModalButton.addEventListener('click', function () {
+        confirmationModal.style.display = 'block';
+    });
+
+    closeModalButton.addEventListener('click', function () {
+        confirmationModal.style.display = 'none';
+    });
+
+    cancelDeleteButton.addEventListener('click', function () {
+        confirmationModal.style.display = 'none';
+    });
+
+    confirmDeleteButton.addEventListener('click', function () {
+        confirmationModal.style.display = 'none';
+        document.getElementById('removeForm').submit();
+    });
+    //<button class="mt-3 bg-danger" type="submit"><strong>Remove</strong></button>
+    //document.getElementById('removeForm').addEventListener('submit', function (event) {
+    //    var confirmation = confirm("Are you sure you want to delete?");
+    //    if (!confirmation) {
+    //        event.preventDefault();
+    //    }
+    //});
+</script>

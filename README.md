@@ -7,9 +7,9 @@
 3. **Statistics:** 
   - 🟢 Track the number of times each shortened URL has been accessed.
 4. **Custom URL:** 
-  - ⚫ Optionally, allow users to specify custom short URLs.
+  - 🟢 Optionally, allow users to specify custom short URLs.
 5. **User Authentication:** 
-  - ⚫ Implement basic user authentication to allow registered users to manage their shortened URLs.
+  - 🟢 Implement basic user authentication to allow registered users to manage their shortened URLs.
 6. **Background Service:** 
   - ⚫ Create a background service removing out-of-date URLs.
 

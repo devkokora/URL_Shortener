@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using URL_Shortener.Models;
@@ -9,14 +10,16 @@ namespace URL_Shortener.Pages
     public class ManagerModel : PageModel
     {
         private readonly IUserInteractive _userInteractive;
+        private readonly IUrlInteractive _urlInteractive;
         public readonly IUserService _userService;
-        public List<Url>? urls { get; set; } = new();
+        public List<Url>? urls { get; set; }
         [BindProperty]
-        public Url? edirUrl { get; set; }
+        public Url existingUrl { get; set; } = new();
 
-        public ManagerModel(IUserInteractive userInteractive, IUserService userService)
+        public ManagerModel(IUserInteractive userInteractive, IUrlInteractive urlInteractive, IUserService userService)
         {
             _userInteractive = userInteractive;
+            _urlInteractive = urlInteractive;
             _userService = userService;
         }
 
@@ -27,6 +30,18 @@ namespace URL_Shortener.Pages
             {
                 urls = _userInteractive.GetAllUrlsByUser(user.Id)?.Distinct().ToList();
             }
+        }
+
+        public IActionResult OnPost(string action)
+        {
+            if (ModelState.IsValid)
+            {
+                if (action == "remove")
+                    _urlInteractive.Delete(existingUrl.Id);
+                else
+                    _urlInteractive.Edit(existingUrl);
+            }
+            return RedirectToPage();
         }
     }
 }
