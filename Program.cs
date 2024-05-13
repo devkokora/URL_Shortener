@@ -38,7 +38,7 @@ if (app.Environment.IsDevelopment())
 app.UseStaticFiles();
 app.UseSession();
 app.UseRouting();
-//app.UseAuthentication();
+app.UseAuthentication();
 
 //app.UseUserMiddleware();
 app.UseMiddleware<UserMiddleware>();
