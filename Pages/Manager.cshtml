@@ -39,6 +39,7 @@
                                             <td class="text-end">@url.VisitorCount</td>
                                             <td class="text-center bg-success text-white">OK</td>
                                             <td hidden>@url.Id</td>
+                                            <td hidden>@url.UserId</td>
                                         </tr>
                                     }
                                 }
@@ -48,6 +49,7 @@
                 </div>
                 <form class="col-5" method="post">
                     <input type="hidden" asp-for="@Model.existingUrl.Id" id="urlIdInput" />
+                    <input type="hidden" asp-for="@Model.existingUrl.UserId" id="urlUserIdInput" />
                     <div class="field-row-stacked" style="width: 200px">
                         <label asp-for="@Model.existingUrl.ShortUrl" for="zipLinkInput">Zip link</label>
                         <input asp-for="@Model.existingUrl.ShortUrl" id="zipLinkInput" type="text" />
@@ -64,6 +66,7 @@
                 </form>
                 <form method="post" id="removeForm" style="position:absolute; top:170px; left:466px">
                     <input type="hidden" asp-for="@Model.existingUrl.Id" id="urlIdInput2" />
+                    <input type="hidden" asp-for="@Model.existingUrl.UserId" id="urlUserIdInput2" />
                     <input type="hidden" asp-for="@Model.existingUrl.ShortUrl" id="zipLinkInput2" />
                     <input type="hidden" asp-for="@Model.existingUrl.LongUrl" id="fullLinkInput2" />
                     <input type="hidden" name="action" value="remove" />
@@ -104,9 +107,11 @@
                 document.getElementById("zipLinkInput").value = cols[0].textContent.trim();
                 document.getElementById("fullLinkInput").value = cols[1].textContent.trim();
                 document.getElementById("urlIdInput").value = cols[4].textContent.trim();
+                document.getElementById("urlUserIdInput").value = cols[5].textContent.trim();
                 document.getElementById("zipLinkInput2").value = cols[0].textContent.trim();
                 document.getElementById("fullLinkInput2").value = cols[1].textContent.trim();
                 document.getElementById("urlIdInput2").value = cols[4].textContent.trim();
+                document.getElementById("urlUserIdInput2").value = cols[5].textContent.trim();
             });
         });
     });

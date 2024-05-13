@@ -51,7 +51,7 @@ namespace URL_Shortener.Pages
             }
             url.ShortUrl = _urlInteractive.Create(url);
 
-            if (string.IsNullOrEmpty(url.ShortUrl))
+            if (!string.IsNullOrEmpty(url.ShortUrl))
             {
                 HttpContext.Session.SetString("ShortUrlOutput", shortUrlPattern + url.ShortUrl);
                 HttpContext.Session.SetString("LongUrlOutput", url.LongUrl);

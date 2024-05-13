@@ -37,15 +37,15 @@ public class LoginModel : PageModel
             {
                 HttpContext.Session.SetInt32("userId", user.Id);
 
-                var userService = HttpContext.RequestServices.GetService<IUserService>();
+                //var userService = HttpContext.RequestServices.GetService<IUserService>();
                 var userMiddleware = new UserMiddleware(_ => Task.CompletedTask);
 
-                if (userService is not null)
-                    userMiddleware.InvokeAsync(HttpContext, userService).Wait();
+                if (_userService is not null)
+                    userMiddleware.InvokeAsync(HttpContext, _userService).Wait();
 
                 return RedirectToPage("Manager");
             }
         }
-        return Page();
+        return RedirectToPage("Register");
     }
 }

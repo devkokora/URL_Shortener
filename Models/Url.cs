@@ -11,6 +11,7 @@ namespace URL_Shortener.Models
         [Required]
         public string LongUrl { get; set; } = string.Empty;
         public int VisitorCount { get; set; }
+        public DateTime Create_at { get; set; } = DateTime.UtcNow.AddHours(7);
 
         [ForeignKey("UserId")]
         public int? UserId { get; set; }

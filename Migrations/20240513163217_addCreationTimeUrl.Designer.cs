@@ -12,8 +12,8 @@ using URL_Shortener.Models;
 namespace URL_Shortener.Migrations
 {
     [DbContext(typeof(UrlShortenerDbContext))]
-    [Migration("20240512185612_updatePasswordLengthForSha256")]
-    partial class updatePasswordLengthForSha256
+    [Migration("20240513163217_addCreationTimeUrl")]
+    partial class addCreationTimeUrl
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,9 @@ namespace URL_Shortener.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Create_at")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("LongUrl")
                         .IsRequired()

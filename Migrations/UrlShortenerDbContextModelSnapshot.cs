@@ -30,6 +30,9 @@ namespace URL_Shortener.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("Create_at")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("LongUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

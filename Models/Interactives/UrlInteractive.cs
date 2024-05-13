@@ -83,6 +83,27 @@ namespace URL_Shortener.Models.Interactives
             }
         }
 
+        public void DeleteAll(List<Url> urls)
+        {
+            if (urls is not null)
+            {
+                _urlShortenerDbContext.Urls.RemoveRange(urls);
+                _urlShortenerDbContext.SaveChanges();
+            }
+        }
+
+        public List<Url>? GetAll() => _urlShortenerDbContext.Urls.ToList();
+
+        //public List<Url>? GetAllNonUser()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public List<Url>? GetAllNonSubscription()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
         //public Url? GetUrlByZipLink(string? zipLink)
         //{
         //    return _urlShortenerDbContext.Urls.FirstOrDefault(u => u.ShortUrl == zipLink);

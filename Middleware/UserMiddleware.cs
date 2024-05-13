@@ -27,11 +27,14 @@ namespace URL_Shortener.Middleware
         }
     }
 
-    public static class UserMiddlewareExtensions
-    {
-        public static IApplicationBuilder UseUserMiddleware(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<UserMiddleware>();
-        }
-    }
+
+    //Can directly say app.UseMiddleware<UserMiddleware>(); for all
+    //but if need for some reasonable app.UseUserMiddleware(); need to build-in Extension on their class
+    //public static class UserMiddlewareExtensions
+    //{
+    //    public static IApplicationBuilder UseUserMiddleware(this IApplicationBuilder builder)
+    //    {
+    //        return builder.UseMiddleware<UserMiddleware>();
+    //    }
+    //}
 }

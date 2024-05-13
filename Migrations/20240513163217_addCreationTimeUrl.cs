@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace URL_Shortener.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class addCreationTimeUrl : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,7 @@ namespace URL_Shortener.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Username = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false),
                     Create_At = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Subscription_Start = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -39,6 +39,7 @@ namespace URL_Shortener.Migrations
                     ShortUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LongUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     VisitorCount = table.Column<int>(type: "int", nullable: false),
+                    Create_at = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
