@@ -19,10 +19,6 @@ namespace URL_Shortener.Services
             var nextTime = new DateTime(now.Year, now.Month, now.Day, 0, 0, 0, DateTimeKind.Utc).AddDays(1).AddHours(7);
 
             var dueTime = nextTime - now;
-            //if (dueTime < TimeSpan.Zero)
-            //{
-            //    dueTime += TimeSpan.FromDays(1);
-            //}
 
             _timer = new Timer(RemoveOutOfDatedUrls, null, dueTime, TimeSpan.FromDays(1));
             return Task.CompletedTask;

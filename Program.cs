@@ -16,7 +16,6 @@ builder.Services.AddScoped<IUrlService, UrlService>();
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
-//builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages(options =>
 {
     options.Conventions.AddPageRoute("/index", "{*url}");
@@ -45,6 +44,5 @@ app.UseRouting();
 app.UseMiddleware<UserMiddleware>();
 
 app.MapRazorPages();
-//app.MapDefaultControllerRoute();
 
 app.Run();

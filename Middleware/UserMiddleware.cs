@@ -27,7 +27,6 @@ namespace URL_Shortener.Middleware
         }
     }
 
-
     //Can directly say app.UseMiddleware<UserMiddleware>(); for all
     //but if need for some reasonable app.UseUserMiddleware(); need to build-in Extension on their class
     //public static class UserMiddlewareExtensions
